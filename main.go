@@ -2,37 +2,89 @@ package main
 
 import (
 	"fmt"
-	"strconv"
+	"math"
+	"slices"
 )
 
 func main() {
-	var a string = "koda"
-	var b int
-	var c float32
-	const d int8 = 21
-	fmt.Printf("%s, %d, %.3f\n", a, b, c)
-	fmt.Println(d)
-	fmt.Print("Hai ")
-	fmt.Println("Hello World!")
+	// minitask-1
+	radius := 21
+	area, circumference := HitungLingkaran(radius)
+	fmt.Printf("Luas     : %.2f\n", area)
+	fmt.Printf("Keliling : %.2f\n", circumference)
 
-	// konversi
-	isSame := b == int(c)
-	fmt.Println(isSame)
-	kata := a + strconv.Itoa(int(d))
-	fmt.Println(kata)
+	// minitask-2
+	segitiga(5)
 
-	multiple(2, 7)
-	total, rerata := multipleApp(67, 89, 85, 90)
-	fmt.Printf("Sum = %d\nAvg = %.2f", total, rerata)
+	// minitask-3
+	insertDataToSlice()
+
+	// minitask-4
+	type Pendidikan struct {
+		nama    string
+		jurusan string
+	}
+
+	type Biodata struct {
+		name      string
+		foto      string
+		email     string
+		umur      int
+		telp      string
+		isMerried bool
+		education []Pendidikan
+	}
+
+	aqil := Biodata{
+		name:      "Ahmad Aqil",
+		foto:      "profile.jpg",
+		email:     "khairunnz123@gmail.com",
+		umur:      21,
+		telp:      "08181812323",
+		isMerried: false,
+		education: []Pendidikan{
+			{
+				nama:    "SMK N 1 Adiwerna",
+				jurusan: "TKJ",
+			},
+			{
+				nama:    "Universitas Siber Asia",
+				jurusan: "Informatika",
+			},
+		},
+	}
+	fmt.Println(aqil)
 
 }
 
-// multiple input dengan 1 output
-func multiple(angka1 int, angka2 int) int {
-	return angka1 * angka2
+func HitungLingkaran(r int) (float32, float32) {
+	return luasLingkaran(r), kelilingLingkaran(r)
 }
-func multipleApp(mtk uint, eng uint, indo uint, ipa uint) (sum uint, avg float32) {
-	sum = mtk + eng + indo + ipa
-	avg = float32(sum) / float32(4)
-	return sum, avg
+
+func kelilingLingkaran(r int) float32 {
+	return 2 * math.Pi * float32(r)
+}
+
+func luasLingkaran(r int) float32 {
+	return math.Pi * float32(r*r)
+}
+
+func segitiga(n int) {
+	for i := range n {
+		for range i + 1 {
+			fmt.Print("*")
+		}
+		fmt.Println()
+	}
+}
+func insertDataToSlice() {
+	data := []int{50, 75, 66, 20, 32, 90}
+
+	data = slices.Insert(data, 3, 88)
+
+	fmt.Println(data)
+
+	for i, v := range data {
+		fmt.Printf("Index %d: %d\n", i, v)
+	}
 }
