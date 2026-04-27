@@ -6,26 +6,26 @@ import (
 )
 
 func main() {
-	jariJari := 21.0
-	// k := kelilingLingkaran(jariJari)
+	radius := 21
+	// k := kelilingLingkaran(radius)
 	// fmt.Printf("Keliling : %.2f\n", k)
-	// l := luasLingkaran(jariJari)
+	// l := luasLingkaran(radius)
 	// fmt.Printf("Luas : %.2f\n", l)
 
-	luas, keliling := HitungLingkaran(jariJari)
+	area, circumference := HitungLingkaran(radius)
 
-	fmt.Printf("Luas     : %.2f\n", luas)
-	fmt.Printf("Keliling : %.2f\n", keliling)
+	fmt.Printf("Luas     : %.2f\n", area)
+	fmt.Printf("Keliling : %.2f\n", circumference)
 }
 
-func HitungLingkaran(r float64) (float64, float64) {
+func HitungLingkaran(r int) (float32, float32) {
 	return luasLingkaran(r), kelilingLingkaran(r)
 }
 
-func kelilingLingkaran(r float64) float64 {
-	return 2 * math.Pi * r
+func kelilingLingkaran(r int) float32 {
+	return 2 * math.Pi * float32(r)
 }
 
-func luasLingkaran(r float64) float64 {
-	return math.Pi * r * r
+func luasLingkaran(r int) float32 {
+	return math.Pi * float32(r*r)
 }
