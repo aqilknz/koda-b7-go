@@ -11,10 +11,15 @@ import (
 	"github.com/aqilknz/koda-b7-go/internals/minitask2"
 	"github.com/aqilknz/koda-b7-go/internals/minitask3"
 	"github.com/aqilknz/koda-b7-go/internals/minitask4"
+	"github.com/aqilknz/koda-b7-go/internals/minitask6"
+	"github.com/aqilknz/koda-b7-go/internals/minitask7"
+	"github.com/aqilknz/koda-b7-go/internals/minitask8"
 )
 
 func main() {
 	scanner := bufio.NewScanner(os.Stdin)
+
+	person := minitask7.NewPerson("Ahmad Aqil", "Acropolis C.10 No.29", "0822929292")
 
 	for {
 		fmt.Println("===Minitask===")
@@ -22,6 +27,11 @@ func main() {
 		fmt.Println("2. Segitiga Siku-Siku")
 		fmt.Println("3. Manipulasi Slice")
 		fmt.Println("4. Biodata")
+		fmt.Println("5. Baca File")
+		fmt.Println("6. Print Data Personal")
+		fmt.Println("7. Sapa")
+		fmt.Println("8. Ganti Nama")
+		fmt.Println("9. Payment")
 		fmt.Println("0. Keluar")
 		fmt.Println("")
 		fmt.Print("Pilih Menu: ")
@@ -57,6 +67,51 @@ func main() {
 
 		case 4:
 			minitask4.ShowBiodata()
+
+		case 5:
+			fmt.Print("Masukkan path file: ")
+			scanner.Scan()
+			filePath := strings.TrimSpace(scanner.Text())
+
+			err := minitask6.ReadFile(filePath)
+			if err != nil {
+				fmt.Println("Gagal membaca file: ", err)
+			}
+
+		case 6:
+			person.Print()
+
+		case 7:
+			fmt.Println(person.Greet())
+
+		case 8:
+			fmt.Println("old:\n", person.Greet())
+			fmt.Print("\nMasukkan Nama: ")
+			scanner.Scan()
+			inputNama := strings.TrimSpace(scanner.Text())
+			person.ChangeName(inputNama)
+			fmt.Println("\nnew:\n", person.Greet())
+
+		case 9:
+			prices := []int{5000, 10000, 25000}
+			invalidPrices := []int{-5000}
+
+			fiktif := &minitask8.Fiktif{}
+
+			checkout := minitask8.NewCheckout(minitask8.Bank{})
+			checkout.Process(prices)
+
+			checkout = minitask8.NewCheckout(minitask8.Online{})
+			checkout.Process(prices)
+
+			checkout = minitask8.NewCheckout(fiktif)
+			checkout.Process(prices)
+
+			// error handling
+			checkout.Process(invalidPrices)
+
+			fmt.Println("Riwayat Pembayaran Fiktif:")
+			fmt.Println(fiktif.History)
 		case 0:
 			fmt.Println("Thanks")
 			return
