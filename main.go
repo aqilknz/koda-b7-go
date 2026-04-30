@@ -7,6 +7,7 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/aqilknz/koda-b7-go/internals/goroutine"
 	"github.com/aqilknz/koda-b7-go/internals/minitask1"
 	"github.com/aqilknz/koda-b7-go/internals/minitask2"
 	"github.com/aqilknz/koda-b7-go/internals/minitask3"
@@ -32,6 +33,10 @@ func main() {
 		fmt.Println("7. Sapa")
 		fmt.Println("8. Ganti Nama")
 		fmt.Println("9. Payment")
+		fmt.Println("10. CoffeShop")
+		fmt.Println("11. Activity")
+		fmt.Println("12. Message")
+		fmt.Println("13. Pipeline")
 		fmt.Println("0. Keluar")
 		fmt.Println("")
 		fmt.Print("Pilih Menu: ")
@@ -112,6 +117,14 @@ func main() {
 
 			fmt.Println("Riwayat Pembayaran Fiktif:")
 			fmt.Println(fiktif.History)
+		case 10:
+			goroutine.CoffeeShop()
+		case 11:
+			goroutine.Activity()
+		case 12:
+			goroutine.MessegeBoard()
+		case 13:
+			goroutine.Pipeline()
 		case 0:
 			fmt.Println("Thanks")
 			return
